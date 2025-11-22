@@ -59,45 +59,55 @@ End the program.
 
 ## Program:
 ```
-clc
-clear;
-close;
+import matplotlib.pyplot as plt
 
-Pt = 1000;
-G = 40;
-lambda = 0.05;
-sigma = 10;
-pi4 = (4*%pi)^3;
+# Given values
+Pt = 1000
+G = 40
+lambda_ = 0.05
+sigma = 10
+pi4 = (4 * np.pi) ** 3
 
-R = linspace(1e3, 200e3, 500);
-Pr_R = (Pt .* G^2 .* lambda^2 .* sigma) ./ (pi4 .* R.^4);
-figure(1);
-Pr_R_dB = 10 .* log10(Pr_R);
-plot(R/1000, Pr_R_dB);
-xlabel("Power Received");
-ylabel("Range");
+R = np.linspace(1e3, 200e3, 500)     # Range
+Pr_R = (Pt * G**2 * lambda_**2 * sigma) / (pi4 * R**4)
+Pr_R_dB = 10 * np.log10(Pr_R)
 
-Pt_values = linspace(100, 10000, 500);
-R_fixed = 50e3;
-Pr_Pt = (Pt_values .* G^2 .* lambda^2 .* sigma) ./ (pi4 .* R_fixed.^4);
-figure(2);
-plot(Pt_values, Pr_Pt);
-xlabel("Power Received");
-ylabel("Power Transmitted");
+plt.figure(1)
+plt.plot(R / 1000, Pr_R_dB)
+plt.xlabel("Range (km)")
+plt.ylabel("Power Received (dB)")
+plt.title("Received Power vs Range (Radar Equation)")
+plt.grid(True)
 
-G_values = linspace(5, 60, 500);
-Pt_fixed = 3000;
-Pr_G = (Pt_fixed .* G_values.^2 .* lambda^2 .* sigma) ./ (pi4 .* R_fixed.^4);
-figure(3);
-plot(G_values, Pr_G);
-xlabel("Power Received");
-ylabel("Gain");
+Pt_values = np.linspace(100, 10000, 500)
+R_fixed = 50e3
+Pr_Pt = (Pt_values * G**2 * lambda_**2 * sigma) / (pi4 * R_fixed**4)
+
+plt.figure(2)
+plt.plot(Pt_values, Pr_Pt)
+plt.xlabel("Power Transmitted")
+plt.ylabel("Power Received")
+plt.title("Received Power vs Transmitted Power")
+plt.grid(True)
+
+G_values = np.linspace(5, 60, 500)
+Pt_fixed = 3000
+Pr_G = (Pt_fixed * G_values**2 * lambda_**2 * sigma) / (pi4 * R_fixed**4)
+
+plt.figure(3)
+plt.plot(G_values, Pr_G)
+plt.xlabel("Gain")
+plt.ylabel("Power Received")
+plt.title("Received Power vs Antenna Gain")
+plt.grid(True)
+
+plt.show()
 ```
 ## Output:
    
-<img width="694" height="519" alt="514855556-62b3dedf-46ee-4108-9a8f-f3ab4958dcff" src="https://github.com/user-attachments/assets/617a13a7-9bf9-4da9-95ba-e29bebd8288d" />
-<img width="723" height="550" alt="514855597-917444d0-6145-49b6-8223-935101e041a6" src="https://github.com/user-attachments/assets/81a2fff9-cc20-4561-8b8f-364f46d4686b" />
-<img width="702" height="594" alt="514855627-3f4c0fa5-26cb-4b06-8601-a4d0c9d4fcc4" src="https://github.com/user-attachments/assets/2dfbc428-336e-4311-8f9a-65ba29e40eae" />
+<img width="1158" height="835" alt="512533058-d0d8553b-6236-4f66-bd9d-90399ac977a0" src="https://github.com/user-attachments/assets/dd6a3d6e-fb00-4e49-8b26-852d1cdc6917" />
+<img width="1094" height="828" alt="512532978-a7261c1d-0a30-44f7-89a8-288c6356782b" src="https://github.com/user-attachments/assets/e26633d8-f72d-41a7-93e4-e5d74c02e892" />
+<img width="1082" height="840" alt="512533363-89a8d24f-bb1a-434c-b8bc-a96e64341cbc" src="https://github.com/user-attachments/assets/502944b7-5fda-4d75-b0c8-2be2e5635bc0" />
 
 
 
