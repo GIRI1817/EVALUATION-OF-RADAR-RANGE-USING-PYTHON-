@@ -58,7 +58,7 @@ Display the final calculated maximum range as output.
 End the program.
 
 ## Program:
-```
+```asm
 import matplotlib.pyplot as plt
 
 # Given values
